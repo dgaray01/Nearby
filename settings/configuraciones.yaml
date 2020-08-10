@@ -1,0 +1,12 @@
+depuracion: false
+notificaciones: true
+prefix: "-"
+fragmentos: 2
+estado: online
+juego:
+ tipo: STREAMING
+ nombre:
+  - "-help"
+  - "👥 Usuarios: {nearby.usuarios} | 🎁 Servidores: {nearby.servidores} | ✨ Shard: [{nearby.shard.id}/{nearby.shard.conteo}]"
+ url: "https://twitch.tv/davidbsxdd"
+ tiempo: 0.1

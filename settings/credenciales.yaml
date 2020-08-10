@@ -1,0 +1,6 @@
+token: ""
+sentry: "https://983f96c5b61144f3a3cd781593662399@sentry.io/1451534"
+weezapi: "iIqvDM43lQP67DweOXQZGJhWxp87zcwjwiSn"
+db:
+  dialect: sqlite
+  URI: sqlite:db/nearby.db

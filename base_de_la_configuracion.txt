@@ -1,0 +1,67 @@
+//hola k haces
+const config = {
+  "ownerID": "{{ownerID}}",
+  "admins": [],
+  "support": [],
+  "defaultSettings": {
+    "PREFIX": "-",
+    "TOTALUSUARIOSYBOTSID": "NO_CONFIGURADO",
+    "TOTALUSUARIOSYBOTSNOMBRE": "👥 | 🤖 Total: {{total}}",
+    "USUARIOSID": "NO_CONFIGURADO",
+    "USUARIOSNOMBRE": "👥 Usuarios: {{total}}",
+    "BOTSID": "NO_CONFIGURADO",
+    "BOTSNOMBRE": "🤖 Bots: {{total}}",
+    "ROLESID": "NO_CONFIGURADO",
+    "ROLESNOMBRE": "✨ Roles: {{total}}",
+    "CANALESDEVOZID": "NO_CONFIGURADO",
+    "CANALESDEVOZNOMBRE": "🔊 Canales de voz: {{total}}",
+    "CANALESDETEXTOID": "NO_CONFIGURADO",
+    "CANALESDETEXTONOMBRE": "💬 Canales de texto: {{total}}",
+    "CATEGORIASID": "NO_CONFIGURADO",
+    "CATEGORIASNOMBRE": "📚 Categorias: {{total}}",
+    "TOTALCANALESID": "NO_CONFIGURADO",
+    "TODOSLOSCANALESNOMBRE": "💬 | 🔊 | 📚 : {{total}}",
+    "EMOJISID": "NO_CONFIGURADO",
+    "EMOJISNOMBRE": "🔥 Emojis: {{total}}"
+},
+  permLevels: [
+    { level: 0,
+      name: "Usuario",
+      check: () => true
+    },
+    { level: 2,
+      name: "Moderador del servidor",
+      check: (message) => {
+        try {
+          const modRole = message.guild.roles.find(r => r.name.toLowerCase() === message.settings.modRole.toLowerCase());
+          if (modRole && message.member.roles.has(modRole.id)) return true;
+        } catch (e) {
+          return false;
+        }
+      }
+    },
+
+    { level: 3,
+      name: "Administrador del servidor",
+      check: (message) => message.member.hasPermission("ADMINISTRATOR")
+    },
+    { level: 4,
+      name: "Propietario del servidor",
+      check: (message) => message.channel.type === "text" ? (message.guild.owner.user.id === message.author.id ? true : false) : false
+    },
+    { level: 8,
+      name: "Nearby Soporte",
+      check: (message) => config.support.includes(message.author.id)
+    },
+    { level: 9,
+      name: "Nearby Administrador",
+      check: (message) => config.admins.includes(message.author.id)
+    },
+    { level: 10,
+      name: "NearbyOP",
+      check: (message) => message.client.config.ownerID === message.author.id
+    }
+  ]
+};
+
+module.exports = config;
